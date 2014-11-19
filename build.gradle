@@ -9,3 +9,14 @@ dependencies{
 	compile 'com.google.guava:guava:15.0'
 	testCompile 'junit:junit:4.11'
 }
+
+task(server, dependsOn: 'classes', type: JavaExec) {
+    jvmArgs = ['-Djava.rmi.server.codebase=http://127.0.0.1:4444']
+    main = 'cc.zhuran.rmi.server.Main'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(client, dependsOn: 'classes', type: JavaExec) {
+    main = 'cc.zhuran.rmi.client.Main'
+    classpath = sourceSets.main.runtimeClasspath
+}
